@@ -129,7 +129,7 @@ class FibonacciControllerTest {
 
         }
 
-   /*     @Test
+        @Test
         void testGetFibonacci_PositionWith_Negative() throws Exception {
 
             mockMvc.perform(get("/api/fibonacci/-35")
@@ -138,7 +138,6 @@ class FibonacciControllerTest {
                     .andExpect(status().isBadRequest());
 
         }
-*/
         @Test
         void testGetFibonacci_ValidPosition() throws Exception {
             when(fibonacciService.getFibonacci(5)).thenReturn(5L);
@@ -218,26 +217,4 @@ class FibonacciControllerTest {
             verify(fibonacciService, times(1)).getMostRequestedResultsTop10();
         }
     }
-
-   /* @Nested
-    class RateLimiterTests{
-        @Test
-        void testRateLimiter_TooManyRequests() throws Exception {
-            // Realizar el número de solicitudes permitido antes de alcanzar el límite
-            for (int i = 0; i < 5; i++) { // Suponiendo un limited de 5 solicitudes
-                mockMvc.perform(get("/api/fibonacci/5")
-                                .header("x-api-key", "api-key-test")
-                                .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isOk());
-            }
-
-            // Realizar una solicitud adicional que debería exceder el límite de tasa
-            mockMvc.perform(get("/api/fibonacci/5")
-                            .header("x-api-key", "api-key-test")
-                            .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isTooManyRequests()) // Espera un estado HTTP 429
-                    .andExpect(jsonPath("$.message", containsString("Too Many Requests")));
-        }
-    }*/
-
 }
